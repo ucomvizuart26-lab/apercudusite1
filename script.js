@@ -154,3 +154,92 @@ if (form) {
   dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
   setInterval(() => goTo((current + 1) % total), 3500);
 })();
+// PORTFOLIO MODAL - FLIP CARD
+const portfolioData = {
+  branding: {
+    titre: "Communication & Branding",
+    sous:  "Identité visuelle, chartes graphiques, packaging et brand content.",
+    projets: [
+      // { img: "https://i.ibb.co/xxx/image.jpg", label: "Logo GIZ CI" },
+    ]
+  },
+  digital: {
+    titre: "Communication Digitale",
+    sous:  "Community management, Meta Ads, Google Ads et e-réputation.",
+    projets: []
+  },
+audiovisuel: {
+  titre: "Production Audiovisuelle",
+  sous:  "Films institutionnels, spots pub, motion design, couverture événementielle.",
+  projets: [
+    {
+      type: "video",
+      videoId: "aog0lCWXklI",
+      label: "Film institutionnel GIZ / Fond PPP"
+    }
+  ]
+},
+  informatique: {
+    titre: "Solutions Informatiques",
+    sous:  "Sites web, applications mobiles, plateformes digitales et hébergement.",
+    projets: []
+  },
+  "digital-transform": {
+    titre: "Transformation Digitale",
+    sous:  "Audit digital, automatisation de processus et conseil stratégique.",
+    projets: []
+  }
+};
+
+function openPortfolio(categorie) {
+  const data = portfolioData[categorie];
+  if (!data) return;
+
+  document.getElementById('modalTitle').textContent = data.titre;
+  document.getElementById('modalSub').textContent   = data.sous;
+
+  const grid = document.getElementById('modalGrid');
+  if (data.projets.length === 0) {
+    grid.innerHTML = `
+      <div class="modal-empty">
+        <span>🚧</span>
+        Réalisations à venir — revenez bientôt !
+      </div>`;
+  } else {
+    grid.innerHTML = data.projets.map(p => `
+      <div class="modal-item">
+        <img src="${p.img}" alt="${p.label}" loading="lazy"/>
+        <p class="modal-item-label">${p.label}</p>
+      </div>
+    `).join('');
+  }
+
+  // Relance le flip à chaque ouverture
+  const card = document.getElementById('flipCard');
+  card.style.animation = 'none';
+  card.offsetHeight; // force reflow
+  card.style.animation = 'cardFlip 0.85s cubic-bezier(0.4, 0, 0.2, 1) both';
+
+  document.getElementById('portfolioOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePortfolio() {
+  document.getElementById('portfolioOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Fermer en cliquant sur le fond
+document.addEventListener('DOMContentLoaded', () => {
+  const overlay = document.getElementById('portfolioOverlay');
+  if (overlay) {
+    overlay.addEventListener('click', function(e) {
+      if (e.target === this) closePortfolio();
+    });
+  }
+});
+
+// Fermer avec la touche Échap
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closePortfolio();
+});
