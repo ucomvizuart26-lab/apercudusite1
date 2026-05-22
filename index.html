@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>UCOM Vizuart</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UCOM VIZUART</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+<!-- SPLASH SCREEN -->
+<div class="splash" id="splash">
+  <div class="splash-content">
+    <img src="https://i.ibb.co/7tPWrPZd/UCOM-logo-org.png" alt="UCOM VIZUART" class="splash-logo"/>
+    <p class="splash-tag">Agence de communication & Solutions informatiques</p>
+    <div class="splash-bar">
+      <div class="splash-progress" id="splashProgress"></div>
+    </div>
+    
+  </div>
+</div>
+
+<!-- CONTENU PRINCIPAL -->
+<div class="main-content" id="mainContent">
+<div class="nav-overlay" id="navOverlay" onclick="closeMenu()"></div>
+
+  <!-- BANNIÈRE HERO -->
+  <section class="top-banner">
+    <img src="https://i.ibb.co/0VY6d0wf/guidance-future.png" alt="UCOM VIZUART" class="top-banner-img"/>
+    <div class="top-banner-overlay">
+      <div class="top-banner-content">
+        <p class="top-banner-tag">Africa Tech · Innovation · Progrès</p>
+        <h2 class="top-banner-title">L'Afrique future<br><span>démarre avec toi.</span></h2>
+        <a href="#services" class="btn-primary">Découvrir →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <img src="https://i.ibb.co/7tPWrPZd/UCOM-logo-org.png" alt="UCOM VIZUART" class="logo-img"/>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero" onclick="closeMenu()">Qui sommes-nous</a></li>
+      <li><a href="#services" onclick="closeMenu()">Services</a></li>
+      <li><a href="#references" onclick="closeMenu()">Références</a></li>
+      <li><a href="#contact" class="btn-nav" onclick="closeMenu()">Contact</a></li>
+    </ul>
+    <button class="burger" id="burger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="dot"></span> Agence basée à Abidjan · Côte d'Ivoire
+      </div>
+      <h1>Qui sommes-nous ?</h1>
+      <hr class="title-sep"/>
+      <p class="hero-sub">Fort de plus de dix ans d'expérience, UCOM VIZUART est une agence de communication et de solutions numériques fondée en 2014. Spécialisée dans la conception de stratégies innovantes et le déploiement d'outils digitaux performants, nous accompagnons entreprises, institutions, organisations et entrepreneurs dans la construction, la valorisation et la modernisation de leur image de marque, ainsi que dans l'optimisation de leurs systèmes et processus numériques.</p>
+      <div class="hero-btns">
+        <a href="#services" class="btn-primary">Nos services →</a>
+        <a href="#contact" class="btn-outline">Travailler avec nous</a>
+      </div>
+    </div>
+
+    <!-- DROITE : témoignages -->
+    <div class="hero-visual">
+      <div class="temo-wrap">
+        <span class="temo-label">Ce que disent nos partenaires</span>
+        <div class="tcard">
+          <div class="tcard-top">
+            <img class="tcard-avatar" src="https://i.ibb.co/cS2wYhcr/DCOM9059-proposition-de-recadrage.jpg" alt="Dr. Sander"/>
+            <div>
+              <p class="tcard-name">Dr. Sander Muilerman-Rodrigo</p>
+              <p class="tcard-meta">Chef de projet · ProPFR / GIZ CI</p>
+            </div>
+          </div>
+          <p class="tcard-quote">UCOM VIZUART a conçu et livré un livret digital impeccable, parfaitement aligné sur la charte GIZ et dans les délais convenus. Un travail de haute qualité.</p>
+        </div>
+        <div class="tcard">
+          <div class="tcard-top">
+            <img class="tcard-avatar" src="https://i.ibb.co/jCfdcxS/Hamed-Koffi-Zarour.jpg" alt="Hamed Koffi"/>
+            <div>
+              <p class="tcard-name">Hamed Koffi Zarour</p>
+              <p class="tcard-meta">Personnalité politique · Côte d'Ivoire</p>
+            </div>
+          </div>
+          <p class="tcard-quote">UCOM VIZUART a sublimé ma campagne législative 2021 avec des visuels percutants, salués aussi bien sur les réseaux sociaux que sur le terrain.</p>
+        </div>
+        <div class="tcard">
+          <div class="tcard-top">
+            <img class="tcard-avatar" src="https://i.ibb.co/hjrzJbB/Sarah-Bediak.png" alt="Sarah Bediako"/>
+            <div>
+              <p class="tcard-name">Sarah Bediako</p>
+              <p class="tcard-meta">Entrepreneure · Fondatrice · Cocoaskincare</p>
+            </div>
+          </div>
+          <p class="tcard-quote">Grâce à l'application mobile développée par UCOM VIZUART, mes clientes peuvent essayer mes produits en réalité augmentée. Mes ventes ont décollé dans toute la sous-région.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="section-label">Ce que nous faisons</div>
+    <h2 class="section-title">Nos Services</h2>
+    <p class="section-sub">Une offre complète pour accompagner votre croissance à chaque étape.</p>
+    <div class="services-grid">
+      <div class="scard">
+        <div class="scard-img-wrap">
+          <img src="https://i.ibb.co/N6BDQ28t/Gemini-Generated-Image-1pml551pml551pml.png" alt="Branding" class="scard-img"/>
+        </div>
+        <div class="scard-top"><div class="scard-icon">🎨</div><div class="scard-num">01</div></div>
+        <h3>Communication & Branding</h3>
+        <p>Identité visuelle, charte graphique, plaquettes institutionnelles, packaging et brand content.</p>
+        <div class="scard-tags"><span>Logo</span><span>Charte</span><span>Print</span></div>
+      <button class="btn-portfolio" onclick="openPortfolio('branding')">
+  Nos réalisations <span class="btn-arrow">→</span>
+</button></div>
+      <div class="scard">
+        <div class="scard-img-wrap">
+          <img src="https://i.ibb.co/jP8wxgwx/communication-digitale.png" alt="Communication Digitale" class="scard-img"/>
+        </div>
+        <div class="scard-top"><div class="scard-icon">📱</div><div class="scard-num">02</div></div>
+        <h3>Communication Digitale</h3>
+        <p>Community management, stratégie réseaux sociaux, Meta Ads, Google Ads et e-réputation.</p>
+        <div class="scard-tags"><span>Social Media</span><span>Ads</span><span>SEO</span></div>
+      <button class="btn-portfolio" onclick="openPortfolio('digital')">
+  Nos réalisations <span class="btn-arrow">→</span>
+</button></div>
+      <div class="scard">
+        <div class="scard-img-wrap">
+          <img src="https://i.ibb.co/Z1Kfgfvd/studio-ucom.png" alt="Production Audiovisuelle" class="scard-img"/>
+        </div>
+        <div class="scard-top"><div class="scard-icon">🎬</div><div class="scard-num">03</div></div>
+        <h3>Production Audiovisuelle</h3>
+        <p>Films institutionnels, spots publicitaires, motion design, couverture événementielle.</p>
+        <div class="scard-tags"><span>Vidéo</span><span>Motion</span><span>Événement</span></div>
+      <button class="btn-portfolio" onclick="openPortfolio('audiovisuel')">
+  Nos réalisations <span class="btn-arrow">→</span>
+</button></div>
+      <div class="scard">
+        <div class="scard-img-wrap">
+          <img src="https://i.ibb.co/Sp5FSRd/Coding-at-home.png" alt="Solutions Informatiques" class="scard-img"/>
+        </div>
+        <div class="scard-top"><div class="scard-icon">💻</div><div class="scard-num">04</div></div>
+        <h3>Solutions Informatiques</h3>
+        <p>Sites web professionnels, applications mobiles, plateformes digitales, hébergement et maintenance.</p>
+        <div class="scard-tags"><span>Web</span><span>Mobile</span><span>Cloud</span></div>
+      <button class="btn-portfolio" onclick="openPortfolio('informatique')">
+  Nos réalisations <span class="btn-arrow">→</span>
+</button></div>
+      <div class="scard">
+        <div class="scard-img-wrap">
+          <img src="https://i.ibb.co/PsfPHj4d/digital-transformation.png" alt="Transformation Digitale" class="scard-img"/>
+        </div>
+        <div class="scard-top"><div class="scard-icon">🔄</div><div class="scard-num">05</div></div>
+        <h3>Transformation Digitale</h3>
+        <p>Audit digital, stratégie de transformation, automatisation de processus et conseils.</p>
+        <div class="scard-tags"><span>Audit</span><span>Stratégie</span><span>IA</span></div>
+      <button class="btn-portfolio" onclick="openPortfolio('digital-transform')">
+  Nos réalisations <span class="btn-arrow">→</span>
+</button></div>
+    </div>
+    <div class="services-cta">
+      <p>Votre projet mérite le meilleur.</p>
+      <a href="#contact" class="btn-primary">Démarrer un projet →</a>
+    </div>
+  </section>
+
+  <!-- ÉVÉNEMENTS -->
+  <section class="pub-slider">
+    <div class="section-label" style="margin-bottom:24px;">Événements & Actualités</div>
+    <div class="pub-carousel-wrap">
+      <div class="pub-carousel-track" id="pubTrack">
+        <img src="https://i.ibb.co/zVhjjmMp/Feman-aou-t26.jpg" alt="Événement FEMAN" class="pub-slide"/>
+        <img src="https://i.ibb.co/d0K7rJ6r/Nash-Nov26.jpg" alt="Événement NASH" class="pub-slide"/>
+        <img src="https://i.ibb.co/j92NdGkg/les-awards-de-la-citoyennete.jpg" alt="Awards Citoyenneté" class="pub-slide"/>
+      </div>
+      <div class="pub-dots" id="pubDots">
+        <span class="pub-dot active"></span>
+        <span class="pub-dot"></span>
+        <span class="pub-dot"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÉTHODO -->
+  <section class="methodo" id="apropos">
+    <div class="methodo-left">
+      <div class="section-label">Notre approche</div>
+      <h2 class="section-title">Une méthode<br><span class="gradient-text">éprouvée</span></h2>
+      <p style="color:#8899aa; line-height:1.8; margin-top:16px;">UCOM VIZUART combine réflexion stratégique, créativité visuelle et expertise technique pour vous offrir des solutions cohérentes et performantes.</p>
+      <div class="valeurs-list">
+        <div class="valeur-item"><span class="v-check">✓</span> Innovation permanente</div>
+        <div class="valeur-item"><span class="v-check">✓</span> Excellence & professionnalisme</div>
+        <div class="valeur-item"><span class="v-check">✓</span> Respect strict des délais</div>
+        <div class="valeur-item"><span class="v-check">✓</span> Transparence totale</div>
+        <div class="valeur-item"><span class="v-check">✓</span> Résultats mesurables</div>
+      </div>
+    </div>
+    <div class="methodo-right">
+      <div class="etape-card"><div class="etape-num">01</div><div><h4>Analyse & Diagnostic</h4><p>Compréhension des besoins, étude du marché et définition des objectifs.</p></div></div>
+      <div class="etape-card"><div class="etape-num">02</div><div><h4>Stratégie</h4><p>Élaboration d'un plan d'action clair, adapté à vos réalités.</p></div></div>
+      <div class="etape-card"><div class="etape-num">03</div><div><h4>Création & Développement</h4><p>Conception graphique, développement technique et production.</p></div></div>
+      <div class="etape-card"><div class="etape-num">04</div><div><h4>Livraison & Suivi</h4><p>Mise en ligne, formation et accompagnement post-projet.</p></div></div>
+      <div class="etape-card"><div class="etape-num">05</div><div><h4>Optimisation & Croissance</h4><p>Analyse des performances, ajustements continus et accompagnement stratégique pour maximiser vos résultats.</p></div></div>
+    </div>
+  </section>
+
+  <!-- RÉFÉRENCES -->
+  <section class="references" id="references">
+    <div class="section-label">Ils nous ont fait confiance</div>
+    <h2 class="section-title">Nos Références</h2>
+    <div class="refs-ticker">
+      <div class="ticker-track">
+        <img src="https://i.ibb.co/KpSM1bW8/1-CA-GIZ.png" alt="GIZ" class="ticker-logo"/>
+        <img src="https://i.ibb.co/V0xBwVKm/2-Union-Africaine.png" alt="Union Africaine" class="ticker-logo"/>
+        <img src="https://i.ibb.co/gZv2QPRx/3-Ecobank.png" alt="Ecobank" class="ticker-logo"/>
+        <img src="https://i.ibb.co/0y4xBJJv/4-Orange-DC.png" alt="Orange Digital" class="ticker-logo"/>
+        <img src="https://i.ibb.co/kVpWmx42/5-KFW.png" alt="KFW" class="ticker-logo"/>
+        <img src="https://i.ibb.co/PZnyMZpm/6-Invest-For-Jobs.png" alt="Invest for Jobs" class="ticker-logo"/>
+        <img src="https://i.ibb.co/pvFX7r15/7-Konrad-AS.png" alt="Konrad Adenauer Stiftung" class="ticker-logo"/>
+        <img src="https://i.ibb.co/xK9j3rY1/8-Audace-Institut-Afrique.png" alt="Audace Institut Afrique" class="ticker-logo"/>
+        <img src="https://i.ibb.co/xSCcTsxs/9-Pro-Planteurs.png" alt="Pro-Planteurs" class="ticker-logo"/>
+        <img src="https://i.ibb.co/QB7TRdF/10-Signalis.png" alt="Signalis" class="ticker-logo"/>
+        <img src="https://i.ibb.co/xSyHmC7j/11-Procrea.png" alt="Clinique Procréa" class="ticker-logo"/>
+        <img src="https://i.ibb.co/4ZnH10Hr/12-Centre-Medical-Danan.png" alt="Centre Médical Danan" class="ticker-logo"/>
+        <img src="https://i.ibb.co/vxSdM1PC/13-Jumia.png" alt="Jumia" class="ticker-logo"/>
+        <img src="https://i.ibb.co/WWf6zbZ8/14-Medicoeur.png" alt="Medicoeur.ci" class="ticker-logo"/>
+        <img src="https://i.ibb.co/ztBwJd0/15-Actupeople.png" alt="Actupeople" class="ticker-logo"/>
+        <img src="https://i.ibb.co/Jj8FJN9j/16-Ngboado.png" alt="Ngboado" class="ticker-logo"/>
+        <img src="https://i.ibb.co/KpSM1bW8/1-CA-GIZ.png" alt="GIZ" class="ticker-logo"/>
+        <img src="https://i.ibb.co/V0xBwVKm/2-Union-Africaine.png" alt="Union Africaine" class="ticker-logo"/>
+        <img src="https://i.ibb.co/gZv2QPRx/3-Ecobank.png" alt="Ecobank" class="ticker-logo"/>
+        <img src="https://i.ibb.co/0y4xBJJv/4-Orange-DC.png" alt="Orange Digital" class="ticker-logo"/>
+        <img src="https://i.ibb.co/kVpWmx42/5-KFW.png" alt="KFW" class="ticker-logo"/>
+        <img src="https://i.ibb.co/PZnyMZpm/6-Invest-For-Jobs.png" alt="Invest for Jobs" class="ticker-logo"/>
+        <img src="https://i.ibb.co/pvFX7r15/7-Konrad-AS.png" alt="Konrad Adenauer Stiftung" class="ticker-logo"/>
+        <img src="https://i.ibb.co/xK9j3rY1/8-Audace-Institut-Afrique.png" alt="Audace Institut Afrique" class="ticker-logo"/>
+        <img src="https://i.ibb.co/xSCcTsxs/9-Pro-Planteurs.png" alt="Pro-Planteurs" class="ticker-logo"/>
+        <img src="https://i.ibb.co/QB7TRdF/10-Signalis.png" alt="Signalis" class="ticker-logo"/>
+        <img src="https://i.ibb.co/xSyHmC7j/11-Procrea.png" alt="Clinique Procréa" class="ticker-logo"/>
+        <img src="https://i.ibb.co/4ZnH10Hr/12-Centre-Medical-Danan.png" alt="Centre Médical Danan" class="ticker-logo"/>
+        <img src="https://i.ibb.co/vxSdM1PC/13-Jumia.png" alt="Jumia" class="ticker-logo"/>
+        <img src="https://i.ibb.co/WWf6zbZ8/14-Medicoeur.png" alt="Medicoeur.ci" class="ticker-logo"/>
+        <img src="https://i.ibb.co/ztBwJd0/15-Actupeople.png" alt="Actupeople" class="ticker-logo"/>
+        <img src="https://i.ibb.co/Jj8FJN9j/16-Ngboado.png" alt="Ngboado" class="ticker-logo"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="contact-inner">
+      <div class="section-label">Passons à l'action</div>
+      <h2 class="section-title">Confiez-nous votre<br><span class="gradient-text">transformation digitale</span></h2>
+      <p class="section-sub">Ensemble, donnons vie à vos ambitions. Remplissez le formulaire et nous vous répondons sous 24h.</p>
+      <div class="contact-wrapper">
+        <div class="contact-infos">
+          <div class="info-row"><span class="info-icon">📍</span><span>Cocody Riviera 2, Abidjan – Côte d'Ivoire</span></div>
+          <div class="info-row"><span class="info-icon">📞</span><span>27 22 74 52 10 / 07 08 65 44 02</span></div>
+          <div class="info-row"><span class="info-icon">✉️</span><span>info@ucomvizuart.com</span></div>
+          <div class="info-row"><span class="info-icon">🌐</span><span>www.ucomvizuart.com</span></div>
+          <div class="contact-social">
+            <a href="#" class="social-icon-btn facebook" title="Facebook" target="_blank">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="FB">
+            </a>
+            <a href="#" class="social-icon-btn instagram" title="Instagram" target="_blank">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="IG">
+            </a>
+            <a href="#" class="social-icon-btn linkedin" title="LinkedIn" target="_blank">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg" alt="LinkedIn">
+            </a>
+            <a href="https://wa.me/2250708654402" class="social-icon-btn whatsapp" title="WhatsApp" target="_blank">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WA">
+            </a>
+          </div>
+        </div>
+        <div class="contact-form-wrap">
+          <form id="contactForm" action="https://formspree.io/f/xykokepp" method="POST">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Nom complet</label>
+                <input type="text" name="nom" placeholder="Votre nom" required/>
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" placeholder="votre@email.com" required/>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Téléphone</label>
+                <input type="tel" name="telephone" placeholder="+225 00 00 00 00"/>
+              </div>
+              <div class="form-group">
+                <label>Sujet</label>
+                <select name="sujet">
+                  <option value="">Choisir un sujet</option>
+                  <option value="Branding & Design">Branding & Design</option>
+                  <option value="Communication Digitale">Communication Digitale</option>
+                  <option value="Production Audiovisuelle">Production Audiovisuelle</option>
+                  <option value="Solutions Informatiques">Solutions Informatiques</option>
+                  <option value="Transformation Digitale">Transformation Digitale</option>
+                  <option value="Autre">Autre</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Message</label>
+              <textarea name="message" rows="5" placeholder="Décrivez votre projet..." required></textarea>
+            </div>
+            <button type="submit" class="btn-submit">
+              <span class="btn-text">Envoyer le message →</span>
+              <span class="btn-loading" style="display:none">Envoi en cours...</span>
+            </button>
+          </form>
+          <div class="form-success" style="display:none">
+            <div class="success-icon">✅</div>
+            <h3>Message envoyé !</h3>
+            <p>Merci pour votre message. Nous vous répondons sous 24h.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <img src="https://i.ibb.co/7tPWrPZd/UCOM-logo-org.png" alt="UCOM VIZUART" class="logo-img"/>
+      <p>© 2026 UCOM VIZUART · Tous droits réservés  </p>
+    </div>
+  </footer>
+
+</div><!-- fin main-content -->
+</body>
+</html>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>
