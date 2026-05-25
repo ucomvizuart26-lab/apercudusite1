@@ -103,13 +103,13 @@
         </div>
         <div class="tcard">
           <div class="tcard-top">
-            <img class="tcard-avatar" src="https://i.ibb.co/hjrzJbB/Sarah-Bediak.png" alt="Sarah Bediako"/>
+            <img class="tcard-avatar" src="https://i.ibb.co/YFzLsKjP/Sarah-Bediako.png" alt="Sarah Bediako"/>
             <div>
               <p class="tcard-name">Sarah Bediako</p>
               <p class="tcard-meta">Entrepreneure · Fondatrice · Cocoaskincare</p>
             </div>
           </div>
-          <p class="tcard-quote">Grâce à l'application mobile développée par UCOM VIZUART, mes clientes peuvent essayer mes produits en réalité augmentée. Mes ventes ont décollé dans toute la sous-région.</p>
+          <p class="tcard-quote">Grâce à l’application mobile développée par UCOM VIZUART, je gère mes commandes et mes clientes à distance depuis mon smartphone. Aujourd’hui, mes ventes se développent dans toute la sous-région.</p>
         </div>
       </div>
     </div>
@@ -353,14 +353,10 @@
 <!-- MODAL PORTFOLIO -->
 <div class="portfolio-overlay" id="portfolioOverlay">
   <div class="flip-card" id="flipCard">
-
-    <!-- DOS : logo UCOM -->
     <div class="card-face card-back">
       <img src="https://i.ibb.co/7tPWrPZd/UCOM-logo-org.png" alt="UCOM VIZUART"/>
       <span class="card-back-label">Nos réalisations</span>
     </div>
-
-    <!-- FACE : contenu -->
     <div class="card-face card-front">
       <div class="portfolio-modal" id="portfolioModal">
         <button class="modal-close" onclick="closePortfolio()">×</button>
@@ -372,21 +368,26 @@
         <div class="modal-grid" id="modalGrid"></div>
       </div>
     </div>
-
   </div>
 </div>
+
+<!-- PLEIN ÉCRAN VIDÉO -->
+<div class="video-fullscreen-overlay" id="videoFullscreen">
+  <div class="video-fullscreen-wrap">
+    <button class="video-fullscreen-close" onclick="closeVideoFullscreen()">×</button>
+    <iframe id="videoFullscreenFrame" src="" frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+</div>
+
 <script>
-/* ── DONNÉES PORTFOLIO ─────────────────────────────────────
-   Pour ajouter une réalisation, ajoute un objet dans "projets" :
-   { img: "URL_de_l_image", label: "Nom du projet" }
-────────────────────────────────────────────────────────── */
 const portfolioData = {
   branding: {
     titre: "Communication & Branding",
     sous:  "Identité visuelle, chartes graphiques, packaging et brand content.",
-    projets: [
-      // { img: "https://i.ibb.co/xxx/logo.jpg", label: "Logo GIZ CI" },
-    ]
+    projets: []
   },
   digital: {
     titre: "Communication Digitale",
@@ -396,7 +397,33 @@ const portfolioData = {
   audiovisuel: {
     titre: "Production Audiovisuelle",
     sous:  "Films institutionnels, spots pub, motion design, couverture événementielle.",
-    projets: []
+    projets: [
+      {
+        type:  "video",
+        video: "https://www.youtube.com/embed/FCUgEJeyooc",
+        label: "Film institutionnel GIZ / Fonds Partenariats Publics-Privés"
+      },
+      {
+        type:  "video",
+        video: "https://www.youtube.com/embed/gcUU63XPG2M",
+        label: "Film animation GIZ / ProCIV et le CCI"
+      },
+      {
+        type:  "video",
+        video: "https://www.youtube.com/embed/MVJY_u5zBCQ",
+        label: "Générique emission WebTV ActuPeople"
+      },
+      {
+        type:  "video",
+        video: "https://www.youtube.com/embed/v_UX4K5ijRA",
+        label: "Spot publicitaire carte instantanée Ecobank"
+      },
+      {
+        type:  "video",
+        video: "https://www.youtube.com/embed/ktt_PtPsU_w",
+        label: "Spot Appli mobile Ecobank"
+      }
+    ]
   },
   informatique: {
     titre: "Solutions Informatiques",
@@ -409,6 +436,10 @@ const portfolioData = {
     projets: []
   }
 };
+
+function getYoutubeId(url) {
+  return url.split('/').pop().split('?')[0];
+}
 
 function openPortfolio(categorie) {
   const data = portfolioData[categorie];
@@ -425,13 +456,32 @@ function openPortfolio(categorie) {
         Réalisations à venir — revenez bientôt !
       </div>`;
   } else {
-    grid.innerHTML = data.projets.map(p => `
-      <div class="modal-item">
-        <img src="${p.img}" alt="${p.label}" loading="lazy"/>
-        <p class="modal-item-label">${p.label}</p>
-      </div>
-    `).join('');
+    grid.innerHTML = data.projets.map(p => {
+      if (p.type === 'video') {
+        const id = getYoutubeId(p.video);
+        const thumb = p.thumb || `https://img.youtube.com/vi/${id}/mqdefault.jpg`;
+        return `
+          <div class="modal-item modal-item-video">
+            <div class="video-thumb-wrap" onclick="openVideoFullscreen('${p.video}')">
+              <img src="${thumb}" alt="${p.label}" class="video-thumb"/>
+              <div class="video-thumb-overlay"></div>
+              <button class="video-play-btn">▶</button>
+            </div>
+            <p class="modal-item-label">🎬 ${p.label}</p>
+          </div>`;
+      }
+      return `
+        <div class="modal-item">
+          <img src="${p.img}" alt="${p.label}" loading="lazy"/>
+          <p class="modal-item-label">${p.label}</p>
+        </div>`;
+    }).join('');
   }
+
+  const card = document.getElementById('flipCard');
+  card.style.animation = 'none';
+  card.offsetHeight;
+  card.style.animation = 'cardFlip 0.85s cubic-bezier(0.4, 0, 0.2, 1) both';
 
   document.getElementById('portfolioOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -442,18 +492,36 @@ function closePortfolio() {
   document.body.style.overflow = '';
 }
 
-// Fermer en cliquant sur le fond
+function openVideoFullscreen(url) {
+  const id = getYoutubeId(url);
+  document.getElementById('videoFullscreenFrame').src =
+    `https://www.youtube.com/embed/${id}?rel=0&modestbranding=1&autoplay=1`;
+  document.getElementById('videoFullscreen').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeVideoFullscreen() {
+  document.getElementById('videoFullscreenFrame').src = '';
+  document.getElementById('videoFullscreen').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
 document.getElementById('portfolioOverlay').addEventListener('click', function(e) {
   if (e.target === this) closePortfolio();
 });
 
-// Fermer avec la touche Echap
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closePortfolio();
+document.getElementById('videoFullscreen').addEventListener('click', function(e) {
+  if (e.target === this) closeVideoFullscreen();
 });
 
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeVideoFullscreen();
+    closePortfolio();
+  }
+});
 
-/* ── SPLASH SCREEN ────────────────────────────────────────── */
+/* ── SPLASH SCREEN ── */
 window.addEventListener('load', () => {
   const progress = document.getElementById('splashProgress');
   const splash   = document.getElementById('splash');
@@ -469,7 +537,7 @@ window.addEventListener('load', () => {
   }, 3200);
 });
 
-/* ── MENU BURGER ──────────────────────────────────────────── */
+/* ── MENU BURGER ── */
 function toggleMenu() {
   document.getElementById('navLinks').classList.toggle('open');
   document.getElementById('burger').classList.toggle('open');
@@ -481,7 +549,7 @@ function closeMenu() {
   document.getElementById('navOverlay').classList.remove('open');
 }
 
-/* ── CAROUSEL ÉVÉNEMENTS ──────────────────────────────────── */
+/* ── CAROUSEL ÉVÉNEMENTS ── */
 (function() {
   const track = document.getElementById('pubTrack');
   const dots  = document.querySelectorAll('.pub-dot');
@@ -496,7 +564,8 @@ function closeMenu() {
   dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
   setInterval(() => goTo(current + 1), 4000);
 })();
-</script></body>
+</script>
+</body>
 </html>
     <script  src="./script.js"></script>
 

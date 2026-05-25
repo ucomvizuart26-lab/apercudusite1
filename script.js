@@ -173,8 +173,8 @@ audiovisuel: {
   sous:  "Films institutionnels, spots pub, motion design, couverture événementielle.",
   projets: [
     {
-      type: "video",
-      videoId: "aog0lCWXklI",
+      type:  "video",
+      video: "https://www.youtube.com/embed/FCUgEJeyooc",
       label: "Film institutionnel GIZ / Fond PPP"
     }
   ]
@@ -206,12 +206,28 @@ function openPortfolio(categorie) {
         Réalisations à venir — revenez bientôt !
       </div>`;
   } else {
-    grid.innerHTML = data.projets.map(p => `
-      <div class="modal-item">
-        <img src="${p.img}" alt="${p.label}" loading="lazy"/>
-        <p class="modal-item-label">${p.label}</p>
-      </div>
-    `).join('');
+    grid.innerHTML = data.projets.map(p => {
+      if (p.type === 'video') {
+        return `
+          <div class="modal-item modal-item-video">
+            <div class="video-wrap">
+              <iframe
+                src="${p.video}?rel=0&modestbranding=1"
+                title="${p.label}"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+            </div>
+            <p class="modal-item-label">🎬 ${p.label}</p>
+          </div>`;
+      }
+      return `
+        <div class="modal-item">
+          <img src="${p.img}" alt="${p.label}" loading="lazy"/>
+          <p class="modal-item-label">${p.label}</p>
+        </div>`;
+    }).join('');
   }
 
   // Relance le flip à chaque ouverture
