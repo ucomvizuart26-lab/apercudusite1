@@ -17,6 +17,30 @@
   <title>UCOM VIZUART</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 </head>
+  <!-- CHATBOT UCOM -->
+<div class="chatbot-bubble" id="chatbotBubble" onclick="toggleChatbot()">
+  <img src="https://i.ibb.co/7tPWrPZd/UCOM-logo-org.png" alt="UCOM"/>
+  <span class="chatbot-notif" id="chatbotNotif">1</span>
+</div>
+
+<div class="chatbot-box" id="chatbotBox">
+  <div class="chatbot-header">
+    <div class="chatbot-header-left">
+      <img src="https://i.ibb.co/7tPWrPZd/UCOM-logo-org.png" alt="UCOM"/>
+      <div>
+        <p class="chatbot-name">Assistant UCOM</p>
+        <p class="chatbot-status"><span class="chatbot-dot"></span> En ligne</p>
+      </div>
+    </div>
+    <button class="chatbot-close" onclick="toggleChatbot()">×</button>
+  </div>
+  <div class="chatbot-messages" id="chatbotMessages"></div>
+  <div class="chatbot-suggestions" id="chatbotSuggestions"></div>
+  <div class="chatbot-input-wrap">
+    <input type="text" id="chatbotInput" placeholder="Écrivez votre message..." onkeydown="if(event.key==='Enter') sendChatMessage()"/>
+    <button onclick="sendChatMessage()">➤</button>
+  </div>
+</div>
 <body>
 
 <!-- SPLASH SCREEN -->
@@ -40,7 +64,7 @@
     <img src="https://i.ibb.co/0VY6d0wf/guidance-future.png" alt="UCOM VIZUART" class="top-banner-img"/>
     <div class="top-banner-overlay">
       <div class="top-banner-content">
-        <p class="top-banner-tag">Africa Tech · Innovation · Progrès</p>
+        <p class="top-banner-tag">Racines · Vision · Futur</p>
         <h2 class="top-banner-title">L'Afrique future<br><span>démarre avec toi.</span></h2>
         <a href="#services" class="btn-primary">Découvrir →</a>
       </div>
@@ -114,7 +138,42 @@
       </div>
     </div>
   </section>
-
+<!-- STATS -->
+<section class="stats-band">
+  <div class="section-label" style="text-align:center; margin-bottom:32px;">Résultats & Impact</div>
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-number-wrap">
+        <span class="stat-number" data-target="10">10</span><span class="stat-suffix">+</span>
+      </div>
+      <p class="stat-label">Années d'expérience</p>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number-wrap">
+        <span class="stat-number" data-target="100">100</span><span class="stat-suffix">+</span>
+      </div>
+      <p class="stat-label">Projets livrés</p>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number-wrap">
+        <span class="stat-number" data-target="30">30</span><span class="stat-suffix">+</span>
+      </div>
+      <p class="stat-label">Clients accompagnés</p>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number-wrap">
+        <span class="stat-number" data-target="6">6</span><span class="stat-suffix"></span>
+      </div>
+      <p class="stat-label">Pays couverts</p>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number-wrap">
+        <span class="stat-number" data-target="15">15</span><span class="stat-suffix">+</span>
+      </div>
+      <p class="stat-label">Secteurs d'activité</p>
+    </div>
+  </div>
+</section>
   <!-- SERVICES -->
   <section class="services" id="services">
     <div class="section-label">Ce que nous faisons</div>
@@ -183,6 +242,34 @@
     </div>
   </section>
 
+  <!-- APPROCHE IA -->
+<section class="ia-section" id="ia">
+  <div class="ia-inner">
+    <div class="ia-header">
+      <div class="section-label">Notre avantage compétitif</div>
+      <h2 class="section-title">L'Intelligence Artificielle<br><span class="gradient-text">au service de vos projets</span></h2>
+      <p class="section-sub">UCOM VIZUART intègre les meilleurs outils IA dans chaque projet pour vous livrer plus vite, avec plus de créativité et de précision.</p>
+    </div>
+    <div class="ia-grid">
+      <div class="ia-card">
+        <div class="ia-icon">🎨</div>
+        <h4>Création visuelle assistée par IA</h4>
+        <p>Logos, visuels et illustrations générés et retravaillés par nos créatifs pour un rendu unique et professionnel.</p>
+      </div>
+      <div class="ia-card">
+        <div class="ia-icon">🎬</div>
+        <h4>Production vidéo boostée par IA</h4>
+        <p>Montage plus rapide, effets et animations optimisés pour des films institutionnels et spots percutants.</p>
+      </div>
+      <div class="ia-card">
+        <div class="ia-icon">📊</div>
+        <h4>Campagnes digitales optimisées</h4>
+        <p>Ciblage précis et analyse des performances en temps réel pour maximiser le retour sur investissement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+  
   <!-- ÉVÉNEMENTS -->
   <section class="pub-slider">
     <div class="section-label" style="margin-bottom:24px;">Événements & Actualités</div>
@@ -385,10 +472,16 @@
 <script>
 const portfolioData = {
   branding: {
-    titre: "Communication & Branding",
-    sous:  "Identité visuelle, chartes graphiques, packaging et brand content.",
-    projets: []
-  },
+  titre: "Communication & Branding",
+  sous:  "Identité visuelle, chartes graphiques, packaging et brand content.",
+  projets: [
+    {
+      type:  "video",
+      video: "https://www.youtube.com/embed/JcQnmoLLPb8",
+      label: "Création de logotypes pour entreprises et institutions"
+    }
+  ]
+},
   digital: {
     titre: "Communication Digitale",
     sous:  "Community management, Meta Ads, Google Ads et e-réputation.",
@@ -422,7 +515,12 @@ const portfolioData = {
         type:  "video",
         video: "https://www.youtube.com/embed/ktt_PtPsU_w",
         label: "Spot Appli mobile Ecobank"
-      }
+      },
+      {
+  type:  "video",
+  video: "https://www.youtube.com/embed/DPI9Fmn_hNs",
+  label: "Spot Pub agence voyage AAL TRIP"
+}
     ]
   },
   informatique: {
@@ -565,7 +663,30 @@ function closeMenu() {
   setInterval(() => goTo(current + 1), 4000);
 })();
 </script>
-</body>
+<!-- CHATBOT UCOM -->
+<div class="chatbot-bubble" id="chatbotBubble" onclick="toggleChatbot()">
+  <img src="https://i.ibb.co/7tPWrPZd/UCOM-logo-org.png" alt="UCOM"/>
+  <span class="chatbot-notif" id="chatbotNotif">1</span>
+</div>
+
+<div class="chatbot-box" id="chatbotBox">
+  <div class="chatbot-header">
+    <div class="chatbot-header-left">
+      <img src="https://i.ibb.co/7tPWrPZd/UCOM-logo-org.png" alt="UCOM"/>
+      <div>
+        <p class="chatbot-name">Vizubot</p>
+        <p class="chatbot-status"><span class="chatbot-dot"></span> En ligne</p>
+      </div>
+    </div>
+    <button class="chatbot-close" onclick="toggleChatbot()">×</button>
+  </div>
+  <div class="chatbot-messages" id="chatbotMessages"></div>
+  <div class="chatbot-suggestions" id="chatbotSuggestions"></div>
+  <div class="chatbot-input-wrap">
+    <input type="text" id="chatbotInput" placeholder="Écrivez votre message..." onkeydown="if(event.key==='Enter') sendChatMessage()"/>
+    <button onclick="sendChatMessage()">➤</button>
+  </div>
+</div></body>
 </html>
     <script  src="./script.js"></script>
 

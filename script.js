@@ -259,3 +259,213 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closePortfolio();
 });
+/* ── COMPTEURS STATS ── */
+(function() {
+  const numbers = document.querySelectorAll('.stat-number');
+  if (!numbers.length) return;
+
+  const animateCounter = (el) => {
+    const target = parseInt(el.getAttribute('data-target'));
+    let count = 0;
+    const step = Math.ceil(target / 40);
+    const timer = setInterval(() => {
+      count += step;
+      if (count >= target) {
+        count = target;
+        clearInterval(timer);
+      }
+      el.textContent = count;
+    }, 40);
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      animateCounter(entry.target);
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.3 });
+
+  numbers.forEach(n => observer.observe(n));
+})();
+/* ── CHATBOT UCOM ── */
+const chatResponses = {
+  bonjour: {
+    msg: "Bonjour et bienvenue chez UCOM VIZUART ! 👋 Je suis Vizubot, votre assistant digital. Comment puis-je vous aider aujourd'hui ?",
+    suggestions: ["Vos services", "Demander un devis", "Délais de livraison", "Nous contacter"]
+  },
+  services: {
+    msg: "UCOM VIZUART propose 5 domaines d'expertise :\n\n🎨 Communication & Branding\n📱 Communication Digitale\n🎬 Production Audiovisuelle\n💻 Solutions Informatiques\n🔄 Transformation Digitale\n\nQuel domaine vous intéresse ?",
+    suggestions: ["Branding", "Site web", "Vidéo", "Devis gratuit"]
+  },
+  branding: {
+    msg: "Notre offre Branding comprend la création de logo, charte graphique, plaquettes institutionnelles et packaging. Chaque projet est unique — contactez-nous pour un devis personnalisé gratuit sous 24h ! 🎨",
+    suggestions: ["Demander un devis", "Délais", "Autres services"]
+  },
+  video: {
+    msg: "Nous réalisons des films institutionnels, spots publicitaires, motion design et couvertures événementielles. Vous pouvez voir nos réalisations directement sur le site ! 🎬",
+    suggestions: ["Demander un devis", "Délais", "Autres services"]
+  },
+  web: {
+    msg: "Nous développons des sites web professionnels, applications mobiles et plateformes digitales sur mesure. Chaque projet inclut l'hébergement et la maintenance. 💻\n\nContactez-nous pour un devis gratuit adapté à vos besoins !",
+    suggestions: ["Demander un devis", "Délais", "Autres services"]
+  },
+  devis: {
+    msg: "Nos tarifs sont adaptés à chaque projet pour vous garantir le meilleur rapport qualité-prix. 📋\n\nContactez-nous dès maintenant et nous vous répondons sous 24h avec une proposition personnalisée et gratuite !",
+    suggestions: ["Nous contacter", "Délais", "Vos références"]
+  },
+  delais: {
+    msg: "Les délais dépendent de la nature et de la complexité de votre projet. Tout commence par un cahier des charges clair qui nous permet de vous donner un planning précis. ⏱️\n\nNous respectons toujours les délais convenus !",
+    suggestions: ["Demander un devis", "Nous contacter", "Vos références"]
+  },
+  references: {
+    msg: "Nous avons accompagné plus de 30 clients dans 6 pays — GIZ, Ecobank, Union Africaine, Orange Digital, Jumia et bien d'autres. 🌍\n\nPlus de 100 projets livrés en 10 ans d'expérience !",
+    suggestions: ["Demander un devis", "Vos services", "Nous contacter"]
+  },
+  contact: {
+    msg: "Vous pouvez nous joindre directement :\n\n📍 Cocody Riviera 2, Abidjan\n📞 27 22 74 52 10 / 07 08 65 44 02\n✉️ info@ucomvizuart.com\n\nOu remplissez le formulaire de contact sur le site — nous répondons sous 24h ! 😊",
+    suggestions: ["Demander un devis", "Vos services", "Merci !"]
+  },
+  merci: {
+    msg: "Merci pour votre intérêt pour UCOM VIZUART ! 🙏 N'hésitez pas à revenir si vous avez d'autres questions. À très bientôt ! 😊",
+    suggestions: ["Vos services", "Nous contacter"]
+  },
+  default: {
+    msg: "Je ne suis pas sûr de comprendre votre question. 😊 Voici ce que je peux vous dire :",
+    suggestions: ["Vos services", "Demander un devis", "Délais de livraison", "Nous contacter"]
+  }
+};
+
+const keywordMap = {
+  bonjour: ["bonjour", "bonsoir", "salut", "hello", "hi", "bjr"],
+  services: ["service", "services", "offre", "offres", "faites", "proposez"],
+  branding: ["logo", "branding", "charte", "identité", "visuelle", "graphique"],
+  video: ["vidéo", "video", "film", "spot", "motion", "audiovisuel"],
+  web: ["site", "web", "application", "app", "mobile", "informatique"],
+  devis: ["devis", "prix", "tarif", "coût", "coute", "combien", "budget"],
+  delais: ["délai", "delai", "temps", "durée", "duree", "livraison", "quand"],
+  references: ["référence", "reference", "client", "partenaire", "projet", "réalisation"],
+  contact: ["contact", "joindre", "appeler", "email", "adresse", "whatsapp"],
+  merci: ["merci", "thanks", "thank", "super", "parfait", "ok"]
+};
+
+function detectIntent(msg) {
+  const lower = msg.toLowerCase();
+  for (const [intent, keywords] of Object.entries(keywordMap)) {
+    if (keywords.some(k => lower.includes(k))) return intent;
+  }
+  return 'default';
+}
+
+function addMessage(text, type) {
+  const messages = document.getElementById('chatbotMessages');
+  const div = document.createElement('div');
+  div.className = `chat-msg ${type}`;
+  div.innerHTML = text.replace(/\n/g, '<br/>');
+  messages.appendChild(div);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+function showSuggestions(suggestions) {
+  const container = document.getElementById('chatbotSuggestions');
+  container.innerHTML = suggestions.map(s =>
+    `<button class="chat-suggestion" onclick="handleSuggestion('${s}')">${s}</button>`
+  ).join('');
+}
+
+function handleSuggestion(text) {
+  addMessage(text, 'user');
+  setTimeout(() => {
+    const intent = detectIntent(text);
+    const response = chatResponses[intent] || chatResponses.default;
+    addMessage(response.msg, 'bot');
+    showSuggestions(response.suggestions);
+  }, 400);
+}
+
+function sendChatMessage() {
+  const input = document.getElementById('chatbotInput');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  addMessage(text, 'user');
+  setTimeout(() => {
+    const intent = detectIntent(text);
+    const response = chatResponses[intent] || chatResponses.default;
+    addMessage(response.msg, 'bot');
+    showSuggestions(response.suggestions);
+  }, 500);
+}
+
+function toggleChatbot() {
+  const box = document.getElementById('chatbotBox');
+  const notif = document.getElementById('chatbotNotif');
+  box.classList.toggle('open');
+  notif.style.display = 'none';
+  if (box.classList.contains('open') && document.getElementById('chatbotMessages').children.length === 0) {
+    setTimeout(() => {
+      const response = chatResponses.bonjour;
+      addMessage(response.msg, 'bot');
+      showSuggestions(response.suggestions);
+    }, 300);
+  }
+}
+/* ── VIZUBOT MESSAGE PROACTIF ── */
+setTimeout(() => {
+  const bubble = document.getElementById('chatbotBubble');
+  const box = document.getElementById('chatbotBox');
+  if (box.classList.contains('open')) return;
+
+  const proactif = document.createElement('div');
+  proactif.id = 'chatbotProactif';
+  proactif.innerHTML = `
+    <p>👋 Bonjour ! Je suis <strong>Vizubot</strong>.<br/>Puis-je vous aider ?</p>
+    <button onclick="document.getElementById('chatbotProactif').remove()">×</button>
+  `;
+  proactif.style.cssText = `
+    position: fixed;
+    bottom: 100px;
+    right: 28px;
+    background: var(--bleu-card);
+    border: 1px solid rgba(255,107,43,0.35);
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 0.84rem;
+    color: var(--blanc);
+    z-index: 8887;
+    max-width: 200px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    animation: fadeUp 0.4s ease both;
+    line-height: 1.5;
+    cursor: pointer;
+  `;
+  proactif.querySelector('button').style.cssText = `
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    background: none;
+    border: none;
+    color: var(--gris);
+    font-size: 1rem;
+    cursor: pointer;
+    line-height: 1;
+  `;
+
+  proactif.addEventListener('click', function(e) {
+    if (e.target.tagName === 'BUTTON') return;
+    proactif.remove();
+    toggleChatbot();
+  });
+
+  document.body.appendChild(proactif);
+
+  // Disparaît automatiquement après 8 secondes
+  setTimeout(() => {
+    if (document.getElementById('chatbotProactif')) {
+      proactif.style.opacity = '0';
+      proactif.style.transition = 'opacity 0.5s ease';
+      setTimeout(() => proactif.remove(), 500);
+    }
+  }, 8000);
+
+}, 10000); // Apparaît après 10 secondes
