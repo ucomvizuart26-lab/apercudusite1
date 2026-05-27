@@ -144,31 +144,25 @@
   <div class="stats-grid">
     <div class="stat-item">
       <div class="stat-number-wrap">
-        <span class="stat-number" data-target="10">10</span><span class="stat-suffix">+</span>
-      </div>
-      <p class="stat-label">Années d'expérience</p>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number-wrap">
-        <span class="stat-number" data-target="100">100</span><span class="stat-suffix">+</span>
+        <span class="stat-number" data-target="500">0</span><span class="stat-suffix">+</span>
       </div>
       <p class="stat-label">Projets livrés</p>
     </div>
     <div class="stat-item">
       <div class="stat-number-wrap">
-        <span class="stat-number" data-target="30">30</span><span class="stat-suffix">+</span>
+        <span class="stat-number" data-target="200">0</span><span class="stat-suffix">+</span>
       </div>
       <p class="stat-label">Clients accompagnés</p>
     </div>
     <div class="stat-item">
       <div class="stat-number-wrap">
-        <span class="stat-number" data-target="6">6</span><span class="stat-suffix"></span>
+        <span class="stat-number" data-target="6">0</span><span class="stat-suffix"></span>
       </div>
       <p class="stat-label">Pays couverts</p>
     </div>
     <div class="stat-item">
       <div class="stat-number-wrap">
-        <span class="stat-number" data-target="15">15</span><span class="stat-suffix">+</span>
+        <span class="stat-number" data-target="15">0</span><span class="stat-suffix">+</span>
       </div>
       <p class="stat-label">Secteurs d'activité</p>
     </div>
@@ -469,19 +463,44 @@
   </div>
 </div>
 
+<!-- VIZUBOT -->
+<div class="chatbot-bubble" id="chatbotBubble" onclick="toggleChatbot()">
+  <img src="https://i.ibb.co/7tPWrPZd/UCOM-logo-org.png" alt="UCOM"/>
+  <span class="chatbot-notif" id="chatbotNotif">1</span>
+</div>
+
+<div class="chatbot-box" id="chatbotBox">
+  <div class="chatbot-header">
+    <div class="chatbot-header-left">
+      <img src="https://i.ibb.co/7tPWrPZd/UCOM-logo-org.png" alt="UCOM"/>
+      <div>
+        <p class="chatbot-name">Vizubot</p>
+        <p class="chatbot-status"><span class="chatbot-dot"></span> En ligne</p>
+      </div>
+    </div>
+    <button class="chatbot-close" onclick="toggleChatbot()">×</button>
+  </div>
+  <div class="chatbot-messages" id="chatbotMessages"></div>
+  <div class="chatbot-suggestions" id="chatbotSuggestions"></div>
+  <div class="chatbot-input-wrap">
+    <input type="text" id="chatbotInput" placeholder="Écrivez votre message..." onkeydown="if(event.key==='Enter') sendChatMessage()"/>
+    <button onclick="sendChatMessage()">➤</button>
+  </div>
+</div>
+
 <script>
 const portfolioData = {
   branding: {
-  titre: "Communication & Branding",
-  sous:  "Identité visuelle, chartes graphiques, packaging et brand content.",
-  projets: [
-    {
-      type:  "video",
-      video: "https://www.youtube.com/embed/JcQnmoLLPb8",
-      label: "Création de logotypes pour entreprises et institutions"
-    }
-  ]
-},
+    titre: "Communication & Branding",
+    sous:  "Identité visuelle, chartes graphiques, packaging et brand content.",
+    projets: [
+      {
+        type:  "video",
+        video: "https://www.youtube.com/embed/JcQnmoLLPb8",
+        label: "Création de logotypes pour entreprises et institutions"
+      }
+    ]
+  },
   digital: {
     titre: "Communication Digitale",
     sous:  "Community management, Meta Ads, Google Ads et e-réputation.",
@@ -491,36 +510,12 @@ const portfolioData = {
     titre: "Production Audiovisuelle",
     sous:  "Films institutionnels, spots pub, motion design, couverture événementielle.",
     projets: [
-      {
-        type:  "video",
-        video: "https://www.youtube.com/embed/FCUgEJeyooc",
-        label: "Film institutionnel GIZ / Fonds Partenariats Publics-Privés"
-      },
-      {
-        type:  "video",
-        video: "https://www.youtube.com/embed/gcUU63XPG2M",
-        label: "Film animation GIZ / ProCIV et le CCI"
-      },
-      {
-        type:  "video",
-        video: "https://www.youtube.com/embed/MVJY_u5zBCQ",
-        label: "Générique emission WebTV ActuPeople"
-      },
-      {
-        type:  "video",
-        video: "https://www.youtube.com/embed/v_UX4K5ijRA",
-        label: "Spot publicitaire carte instantanée Ecobank"
-      },
-      {
-        type:  "video",
-        video: "https://www.youtube.com/embed/ktt_PtPsU_w",
-        label: "Spot Appli mobile Ecobank"
-      },
-      {
-  type:  "video",
-  video: "https://www.youtube.com/embed/DPI9Fmn_hNs",
-  label: "Spot Pub agence voyage AAL TRIP"
-}
+      { type: "video", video: "https://www.youtube.com/embed/FCUgEJeyooc", label: "Film institutionnel GIZ / Fonds Partenariats Publics-Privés" },
+      { type: "video", video: "https://www.youtube.com/embed/gcUU63XPG2M", label: "Film animation GIZ / ProCIV et le CCI" },
+      { type: "video", video: "https://www.youtube.com/embed/MVJY_u5zBCQ", label: "Générique emission WebTV ActuPeople" },
+      { type: "video", video: "https://www.youtube.com/embed/v_UX4K5ijRA", label: "Spot publicitaire carte instantanée Ecobank" },
+      { type: "video", video: "https://www.youtube.com/embed/ktt_PtPsU_w", label: "Spot Appli mobile Ecobank" },
+      { type: "video", video: "https://www.youtube.com/embed/DPI9Fmn_hNs", label: "Spot Pub agence voyage AAL TRIP" }
     ]
   },
   informatique: {
@@ -542,17 +537,11 @@ function getYoutubeId(url) {
 function openPortfolio(categorie) {
   const data = portfolioData[categorie];
   if (!data) return;
-
   document.getElementById('modalTitle').textContent = data.titre;
   document.getElementById('modalSub').textContent   = data.sous;
-
   const grid = document.getElementById('modalGrid');
   if (data.projets.length === 0) {
-    grid.innerHTML = `
-      <div class="modal-empty">
-        <span>🚧</span>
-        Réalisations à venir — revenez bientôt !
-      </div>`;
+    grid.innerHTML = `<div class="modal-empty"><span>🚧</span>Réalisations à venir — revenez bientôt !</div>`;
   } else {
     grid.innerHTML = data.projets.map(p => {
       if (p.type === 'video') {
@@ -575,12 +564,10 @@ function openPortfolio(categorie) {
         </div>`;
     }).join('');
   }
-
   const card = document.getElementById('flipCard');
   card.style.animation = 'none';
   card.offsetHeight;
   card.style.animation = 'cardFlip 0.85s cubic-bezier(0.4, 0, 0.2, 1) both';
-
   document.getElementById('portfolioOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -607,16 +594,11 @@ function closeVideoFullscreen() {
 document.getElementById('portfolioOverlay').addEventListener('click', function(e) {
   if (e.target === this) closePortfolio();
 });
-
 document.getElementById('videoFullscreen').addEventListener('click', function(e) {
   if (e.target === this) closeVideoFullscreen();
 });
-
 document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') {
-    closeVideoFullscreen();
-    closePortfolio();
-  }
+  if (e.key === 'Escape') { closeVideoFullscreen(); closePortfolio(); }
 });
 
 /* ── SPLASH SCREEN ── */
@@ -628,10 +610,7 @@ window.addEventListener('load', () => {
   setTimeout(() => { if (progress) progress.style.width = '100%'; }, 100);
   setTimeout(() => {
     splash.classList.add('hide');
-    setTimeout(() => {
-      splash.style.display = 'none';
-      main.classList.add('visible');
-    }, 800);
+    setTimeout(() => { splash.style.display = 'none'; main.classList.add('visible'); }, 800);
   }, 3200);
 });
 
@@ -662,26 +641,76 @@ function closeMenu() {
   dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
   setInterval(() => goTo(current + 1), 4000);
 })();
+
+/* ── COMPTEURS STATS ── */
+(function() {
+  const numbers = document.querySelectorAll('.stat-number');
+  if (!numbers.length) return;
+  const animateCounter = (el) => {
+    const target = parseInt(el.getAttribute('data-target'));
+    let count = 0;
+    const step = Math.ceil(target / 40);
+    const timer = setInterval(() => {
+      count += step;
+      if (count >= target) { count = target; clearInterval(timer); }
+      el.textContent = count;
+    }, 40);
+  };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      animateCounter(entry.target);
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.3 });
+  numbers.forEach(n => observer.observe(n));
+})();
+
 /* ── VIZUBOT ── */
 const chatResponses = {
   bonjour: {
-    msg: "Bonjour et bienvenue chez UCOM VIZUART ! 👋 Je suis Vizubot, votre assistant digital. Comment puis-je vous aider aujourd'hui ?",
-    suggestions: ["Vos services", "Demander un devis", "Délais de livraison", "Nous contacter"]
+    msg: "Bonjour et bienvenue chez UCOM VIZUART ! 👋 Je suis Vizubot, votre assistant digital.\n\n« Proche de vous, connectés au monde »\n\nComment puis-je vous aider aujourd'hui ?",
+    suggestions: ["Vos services", "Qui êtes-vous ?", "Demander un devis", "Nous contacter"]
+  },
+  whois: {
+    msg: "UCOM VIZUART est une agence de communication et de solutions numériques fondée en 2014 à Abidjan, Côte d'Ivoire. 🌍\n\nAvec plus de 10 ans d'expérience, nous accompagnons entreprises, institutions et entrepreneurs dans la construction et la valorisation de leur image de marque.\n\n« Proche de vous, connectés au monde »",
+    suggestions: ["Le fondateur", "Vos services", "Vos références", "Nous contacter"]
+  },
+  fondateur: {
+    msg: "Fort de plus de 10 ans d'expérience à l'intersection de la créativité et de la technologie, Hermann Graud conjugue une expertise rare : celle d'un créatif visionnaire doublé d'un technicien aguerri. 🎯",
+    suggestions: ["Vos services", "Vos références", "Nous contacter"],
+    photo: "https://i.ibb.co/DBjyCBT/HG-id.png"
+  },
+  anciennete: {
+    msg: "UCOM VIZUART existe depuis 2014 — soit plus de 10 ans d'expérience au service de nos clients ! 🏆\n\nDurant cette période nous avons livré plus de 500 projets dans 6 pays et accompagné plus de 200 clients.",
+    suggestions: ["Vos références", "Vos services", "Le fondateur"]
   },
   services: {
     msg: "UCOM VIZUART propose 5 domaines d'expertise :\n\n🎨 Communication & Branding\n📱 Communication Digitale\n🎬 Production Audiovisuelle\n💻 Solutions Informatiques\n🔄 Transformation Digitale\n\nQuel domaine vous intéresse ?",
-    suggestions: ["Branding", "Site web", "Vidéo", "Devis gratuit"]
+    suggestions: ["Branding", "Communication Digitale", "Audiovisuel", "Solutions Web", "Transformation Digitale"]
   },
   branding: {
-    msg: "Notre offre Branding comprend la création de logo, charte graphique, plaquettes institutionnelles et packaging. Contactez-nous pour un devis personnalisé gratuit sous 24h ! 🎨",
+    msg: "Notre offre Communication & Branding comprend :\n\n• Création de logo et identité visuelle\n• Charte graphique complète\n• Plaquettes et supports institutionnels\n• Packaging et brand content\n\nContactez-nous pour un devis personnalisé gratuit ! 🎨",
     suggestions: ["Demander un devis", "Délais", "Autres services"]
   },
-  video: {
-    msg: "Nous réalisons des films institutionnels, spots publicitaires, motion design et couvertures événementielles. Vous pouvez voir nos réalisations directement sur le site ! 🎬",
+  digital: {
+    msg: "Notre offre Communication Digitale comprend :\n\n• Community management\n• Gestion Facebook, Instagram et TikTok\n• Stratégie réseaux sociaux\n• Meta Ads et Google Ads\n• E-réputation\n\nNous gérons votre présence digitale de A à Z ! 📱",
     suggestions: ["Demander un devis", "Délais", "Autres services"]
   },
-  web: {
-    msg: "Nous développons des sites web professionnels, applications mobiles et plateformes digitales sur mesure. Chaque projet inclut l'hébergement et la maintenance. 💻\n\nContactez-nous pour un devis gratuit adapté à vos besoins !",
+  audiovisuel: {
+    msg: "Notre offre Production Audiovisuelle comprend :\n\n• Films institutionnels\n• Spots publicitaires\n• Motion design et animation\n• Couverture événementielle\n\nVous pouvez voir nos réalisations directement sur le site ! 🎬",
+    suggestions: ["Demander un devis", "Délais", "Autres services"]
+  },
+  informatique: {
+    msg: "Notre offre Solutions Informatiques comprend :\n\n• Sites web professionnels\n• Applications mobiles\n• Plateformes e-commerce\n• Plateformes digitales sur mesure\n• Hébergement et maintenance\n\nDes solutions performantes adaptées à vos besoins ! 💻",
+    suggestions: ["Demander un devis", "Délais", "Autres services"]
+  },
+  transformation: {
+    msg: "Notre offre Transformation Digitale comprend :\n\n• Audit digital complet\n• Stratégie de transformation\n• Automatisation de processus\n• Formations digitales\n• Conseil et accompagnement\n\nNous vous guidons vers le futur numérique ! 🔄",
+    suggestions: ["Demander un devis", "Délais", "Autres services"]
+  },
+  ecommerce: {
+    msg: "Oui, UCOM VIZUART développe des plateformes e-commerce sur mesure ! 🛒\n\nNous créons des boutiques en ligne performantes, sécurisées et adaptées à vos produits.\n\nContactez-nous pour un devis personnalisé gratuit !",
     suggestions: ["Demander un devis", "Délais", "Autres services"]
   },
   devis: {
@@ -692,50 +721,98 @@ const chatResponses = {
     msg: "Les délais dépendent de la nature et de la complexité de votre projet. Tout commence par un cahier des charges clair qui nous permet de vous donner un planning précis. ⏱️\n\nNous respectons toujours les délais convenus !",
     suggestions: ["Demander un devis", "Nous contacter", "Vos références"]
   },
+  horaires: {
+    msg: "Nos horaires d'ouverture :\n\n🗓️ Lundi — Vendredi : 08h00 à 17h00\n🗓️ Samedi : 08h00 à 12h00\n\nNous vous répondons sous 24h ! 😊",
+    suggestions: ["Nous contacter", "Demander un devis"]
+  },
   references: {
-    msg: "Nous avons accompagné plus de 30 clients dans 6 pays — GIZ, Ecobank, Union Africaine, Orange Digital, Jumia et bien d'autres. 🌍\n\nPlus de 100 projets livrés en 10 ans d'expérience !",
+    msg: "Nous avons accompagné des clients prestigieux dans 6 pays 🌍 :\n\n• GIZ, Union Africaine, KFW\n• Ecobank, Orange Digital, Jumia\n• Clinique Procréa, Centre Médical Danan\n• Audace Institut Afrique, Pro-Planteurs\n• Et bien d'autres !\n\nPlus de 500 projets livrés en 10 ans d'expérience.",
     suggestions: ["Demander un devis", "Vos services", "Nous contacter"]
   },
+  localisation: {
+    msg: "UCOM VIZUART est basée à :\n\n📍 Cocody Riviera 2, Abidjan — Côte d'Ivoire\n\nNous intervenons aussi à l'international — France, États-Unis, Allemagne, Dubai et toute l'Afrique de l'Ouest ! 🌍",
+    suggestions: ["Horaires", "Nous contacter", "Vos services"]
+  },
   contact: {
-    msg: "Vous pouvez nous joindre directement :\n\n📍 Cocody Riviera 2, Abidjan\n📞 27 22 74 52 10 / 07 08 65 44 02\n✉️ info@ucomvizuart.com\n\nOu remplissez le formulaire de contact — nous répondons sous 24h ! 😊",
-    suggestions: ["Demander un devis", "Vos services", "Merci !"]
+    msg: "Vous pouvez nous joindre directement :\n\n📍 Cocody Riviera 2, Abidjan\n📞 27 22 74 52 10 / 07 08 65 44 02\n✉️ info@ucomvizuart.com\n🌐 www.ucomvizuart.com\n\nOu remplissez le formulaire sur le site — nous répondons sous 24h ! 😊",
+    suggestions: ["Horaires", "Demander un devis", "Vos services"]
+  },
+  slogan: {
+    msg: "Notre slogan :\n\n✨ « Proche de vous, connectés au monde »\n\nUne agence à taille humaine, basée à Abidjan, avec une vision et une portée internationale ! 🌍",
+    suggestions: ["Qui êtes-vous ?", "Vos services", "Nous contacter"]
   },
   merci: {
-    msg: "Merci pour votre intérêt pour UCOM VIZUART ! 🙏 N'hésitez pas à revenir si vous avez d'autres questions. À très bientôt ! 😊",
+    msg: "Merci pour votre intérêt pour UCOM VIZUART ! 🙏\n\nN'hésitez pas à revenir si vous avez d'autres questions. À très bientôt ! 😊",
     suggestions: ["Vos services", "Nous contacter"]
   },
   default: {
-    msg: "Je ne suis pas sûr de comprendre votre question. 😊 Voici ce que je peux vous dire :",
-    suggestions: ["Vos services", "Demander un devis", "Délais de livraison", "Nous contacter"]
+    msg: "Je ne suis pas sûr de comprendre votre question. 😊\n\nVoici ce que je peux vous dire :",
+    suggestions: ["Vos services", "Qui êtes-vous ?", "Demander un devis", "Nous contacter"]
   }
 };
 
 const keywordMap = {
-  bonjour: ["bonjour", "bonsoir", "salut", "hello", "hi", "bjr"],
-  services: ["service", "services", "offre", "offres", "faites", "proposez"],
-  branding: ["logo", "branding", "charte", "identité", "visuelle", "graphique"],
-  video: ["vidéo", "video", "film", "spot", "motion", "audiovisuel"],
-  web: ["site", "web", "application", "app", "mobile", "informatique"],
-  devis: ["devis", "prix", "tarif", "coût", "coute", "combien", "budget"],
-  delais: ["délai", "delai", "temps", "durée", "duree", "livraison", "quand"],
-  references: ["référence", "reference", "client", "partenaire", "projet", "réalisation"],
-  contact: ["contact", "joindre", "appeler", "email", "adresse", "whatsapp"],
-  merci: ["merci", "thanks", "thank", "super", "parfait", "ok"]
+  bonjour:        ["bonjour", "bonsoir", "salut", "hello", "hi", "bjr"],
+  whois:          ["ucom", "agence", "qui êtes", "qui etes", "présentation", "presentation"],
+  fondateur:      ["fondateur", "hermann", "graud", "créateur", "createur", "patron", "dirigeant"],
+  anciennete:     ["depuis", "fondé", "fonde", "créé", "cree", "2014", "existe"],
+  services:       ["service", "services", "offre", "offres", "faites", "proposez"],
+  branding:       ["logo", "branding", "charte", "identité", "identite", "graphique", "packaging"],
+  digital:        ["community", "réseaux", "reseaux", "facebook", "instagram", "tiktok", "ads", "social"],
+  audiovisuel:    ["vidéo", "video", "film", "spot", "motion", "audiovisuel", "production"],
+  informatique:   ["site", "web", "application", "app", "mobile", "informatique", "hébergement"],
+  ecommerce:      ["ecommerce", "e-commerce", "boutique", "vente en ligne", "shop"],
+  transformation: ["transformation", "audit", "automatisation", "numérique", "numerique", "formation"],
+  devis:          ["devis", "prix", "tarif", "coût", "cout", "combien", "budget"],
+  delais:         ["délai", "delai", "temps", "durée", "duree", "livraison"],
+  horaires:       ["horaire", "heure", "ouvert", "ouverture", "disponible"],
+  references:     ["référence", "reference", "client", "partenaire", "réalisation", "portfolio", "giz", "ecobank"],
+  localisation:   ["adresse", "où", "ou", "situé", "situe", "localisation", "abidjan", "cocody"],
+  contact:        ["contact", "joindre", "appeler", "email", "whatsapp", "téléphone", "telephone"],
+  slogan:         ["slogan", "devise", "proche", "connecté", "connecte", "monde"],
+  merci:          ["merci", "thanks", "thank", "super", "parfait", "génial", "genial"]
 };
 
 function detectIntent(msg) {
   const lower = msg.toLowerCase();
+  if (lower.includes("transformation digitale")) return 'transformation';
+  if (lower.includes("production audiovisuelle")) return 'audiovisuel';
+  if (lower.includes("communication digitale")) return 'digital';
+  if (lower.includes("communication & branding")) return 'branding';
+  if (lower.includes("solutions informatiques")) return 'informatique';
+  if (lower.includes("hermann")) return 'fondateur';
+  if (lower.includes("graud")) return 'fondateur';
+  if (lower.includes("fondateur")) return 'fondateur';
+  if (lower.includes("qui dirige")) return 'fondateur';
+  if (lower.includes("qui êtes")) return 'whois';
+  if (lower.includes("vos services")) return 'services';
+  if (lower.includes("vos références") || lower.includes("nos references")) return 'references';
+  if (lower.includes("nous contacter")) return 'contact';
+  if (lower.includes("demander un devis")) return 'devis';
+  if (lower.includes("délais") || lower.includes("delais")) return 'delais';
+  if (lower.includes("horaires")) return 'horaires';
+  if (lower.includes("le fondateur")) return 'fondateur';
+  if (lower.includes("autres services")) return 'services';
   for (const [intent, keywords] of Object.entries(keywordMap)) {
-    if (keywords.some(k => lower.includes(k))) return intent;
+    if (Array.isArray(keywords) && keywords.some(k => lower.includes(k))) return intent;
   }
   return 'default';
 }
 
-function addMessage(text, type) {
+function addMessage(text, type, photo) {
   const messages = document.getElementById('chatbotMessages');
   const div = document.createElement('div');
   div.className = `chat-msg ${type}`;
-  div.innerHTML = text.replace(/\n/g, '<br/>');
+  if (photo && type === 'bot') {
+    const photoEl = document.createElement('img');
+    photoEl.src = photo;
+    photoEl.style.cssText = 'width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid #ff6b2b;display:block;margin-bottom:8px;';
+    div.appendChild(photoEl);
+  }
+  const textEl = document.createElement('p');
+  textEl.style.margin = '0';
+  textEl.innerHTML = text.replace(/\n/g, '<br/>');
+  div.appendChild(textEl);
   messages.appendChild(div);
   messages.scrollTop = messages.scrollHeight;
 }
@@ -752,7 +829,7 @@ function handleSuggestion(text) {
   setTimeout(() => {
     const intent = detectIntent(text);
     const response = chatResponses[intent] || chatResponses.default;
-    addMessage(response.msg, 'bot');
+    addMessage(response.msg, 'bot', response.photo);
     showSuggestions(response.suggestions);
   }, 400);
 }
@@ -766,7 +843,7 @@ function sendChatMessage() {
   setTimeout(() => {
     const intent = detectIntent(text);
     const response = chatResponses[intent] || chatResponses.default;
-    addMessage(response.msg, 'bot');
+    addMessage(response.msg, 'bot', response.photo);
     showSuggestions(response.suggestions);
   }, 500);
 }
@@ -779,7 +856,7 @@ function toggleChatbot() {
   if (box.classList.contains('open') && document.getElementById('chatbotMessages').children.length === 0) {
     setTimeout(() => {
       const response = chatResponses.bonjour;
-      addMessage(response.msg, 'bot');
+      addMessage(response.msg, 'bot', response.photo);
       showSuggestions(response.suggestions);
     }, 300);
   }
@@ -796,32 +873,21 @@ setTimeout(() => {
     <button onclick="document.getElementById('chatbotProactif').remove()">×</button>
   `;
   proactif.style.cssText = `
-    position: fixed;
-    bottom: 100px;
-    right: 28px;
-    background: var(--bleu-card);
-    border: 1px solid rgba(255,107,43,0.35);
-    border-radius: 12px;
-    padding: 12px 16px;
-    font-size: 0.84rem;
-    color: var(--blanc);
-    z-index: 8887;
-    max-width: 200px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-    animation: fadeUp 0.4s ease both;
-    line-height: 1.5;
-    cursor: pointer;
+    position:fixed; bottom:100px; right:28px;
+    background:var(--bleu-card);
+    border:1px solid rgba(255,107,43,0.35);
+    border-radius:12px; padding:12px 16px;
+    font-size:0.84rem; color:var(--blanc);
+    z-index:8887; max-width:200px;
+    box-shadow:0 8px 24px rgba(0,0,0,0.4);
+    animation:fadeUp 0.4s ease both;
+    line-height:1.5; cursor:pointer;
   `;
   proactif.querySelector('button').style.cssText = `
-    position: absolute;
-    top: 6px;
-    right: 8px;
-    background: none;
-    border: none;
-    color: var(--gris);
-    font-size: 1rem;
-    cursor: pointer;
-    line-height: 1;
+    position:absolute; top:6px; right:8px;
+    background:none; border:none;
+    color:var(--gris); font-size:1rem;
+    cursor:pointer; line-height:1;
   `;
   proactif.addEventListener('click', function(e) {
     if (e.target.tagName === 'BUTTON') return;
@@ -836,31 +902,9 @@ setTimeout(() => {
       setTimeout(() => proactif.remove(), 500);
     }
   }, 8000);
-}, 10000);</script>
-<!-- CHATBOT UCOM -->
-<div class="chatbot-bubble" id="chatbotBubble" onclick="toggleChatbot()">
-  <img src="https://i.ibb.co/7tPWrPZd/UCOM-logo-org.png" alt="UCOM"/>
-  <span class="chatbot-notif" id="chatbotNotif">1</span>
-</div>
-
-<div class="chatbot-box" id="chatbotBox">
-  <div class="chatbot-header">
-    <div class="chatbot-header-left">
-      <img src="https://i.ibb.co/7tPWrPZd/UCOM-logo-org.png" alt="UCOM"/>
-      <div>
-        <p class="chatbot-name">Vizubot</p>
-        <p class="chatbot-status"><span class="chatbot-dot"></span> En ligne</p>
-      </div>
-    </div>
-    <button class="chatbot-close" onclick="toggleChatbot()">×</button>
-  </div>
-  <div class="chatbot-messages" id="chatbotMessages"></div>
-  <div class="chatbot-suggestions" id="chatbotSuggestions"></div>
-  <div class="chatbot-input-wrap">
-    <input type="text" id="chatbotInput" placeholder="Écrivez votre message..." onkeydown="if(event.key==='Enter') sendChatMessage()"/>
-    <button onclick="sendChatMessage()">➤</button>
-  </div>
-</div></body>
+}, 10000);
+</script>
+</body>
 </html>
     <script  src="./script.js"></script>
 
