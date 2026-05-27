@@ -319,7 +319,7 @@ const chatResponses = {
     suggestions: ["Demander un devis", "Nous contacter", "Vos références"]
   },
   references: {
-    msg: "Nous avons accompagné plus de 30 clients dans 6 pays — GIZ, Ecobank, Union Africaine, Orange Digital, Jumia et bien d'autres. 🌍\n\nPlus de 100 projets livrés en 10 ans d'expérience !",
+    msg: "Nous avons accompagné plus de 200 clients dans 6 pays — GIZ, Ecobank, Union Africaine, Orange Digital, Jumia et bien d'autres. 🌍\n\nPlus de 500 projets livrés en 10 ans d'expérience !",
     suggestions: ["Demander un devis", "Vos services", "Nous contacter"]
   },
   contact: {
@@ -332,7 +332,7 @@ const chatResponses = {
   },
   default: {
     msg: "Je ne suis pas sûr de comprendre votre question. 😊 Voici ce que je peux vous dire :",
-    suggestions: ["Vos services", "Demander un devis", "Délais de livraison", "Nous contacter"]
+    suggestions: ["Vos services", "Demander un devis", "Délais de livraison", "Nous contacter", "Fondateur"]
   }
 };
 
